@@ -4,6 +4,7 @@ e.waitUntil(
 caches.open("static").then(cache=>{
 return cache.addAll([
     "/pwa/",
+    "/pwa/index.html",
     "/pwa/images/logo192.png",
     "/pwa/images/logo512.png",
     "/pwa/css/w3.css",
