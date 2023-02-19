@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CatGeoProp</title>
+	<link rel="manifest" href="manifest.json">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+	<link rel="shortcut icon" href="images/deltapi.svg" type="image/x-icon">
+	<meta name="description" content="PWA of DeltaPi">
+	<title>DeltaPi PWA</title>
+	<link rel="stylesheet" href="css/w3.css">
+	<link rel="stylesheet" href="css/w3-theme-black.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="js/w3.js"></script> 
+</head>
+<body>
+<section id="catgeoprop">
+<style>td{text-align:center;}</style>
+
+<div class="w3-center w3-black">
+	<div>
+		<div>
+			<h2>CatGeoProp</h2>
+			<div id="texteToolbar " class=" w3-center w3-black">
+				<table id="toolbar">
+					<tbody>
+						<tr id="icons">
+							<th><button onclick="calculate(form1)" style="font-size: 24px;">Calculate</button></th>
+							<th> </th>
+							<th><button onclick="reset(form1)" style="font-size: 24px;float:right;">Reset</button></th>
+						</tr>                        
+					</tbody>
+				</table>
+			</div>
+			<p><br></p>
+			<div id="main">
+				<div id="texteToolbar "> <br></div>
+				<div id="formArea">
+					<form name="form1">
+						<div id="data">
+							<table border="2">
+								<tbody>
+									<tr>
+										<td>Type of shape :  </td>
+										<td>
+											<select name="Type" onchange="resetoutput(form1)" size="1">
+											<option value="RI">Ring</option>
+											<option value="RR">RibRing</option>
+											<option value="SW">SpokeWheel</option>
+											<option value="GG">GatlingGun</option>
+											<option value="TA">Tablet</option>
+											</select>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							Domed ends (Y/N) : <input name="dome" onchange="resetoutput(form1)" value="checkbox" type="checkbox"><br>
+							Tube diameter (mm) or real void fraction (if &lt;1.0) :	<input name="tubediam" size="10" onchange="resetoutput(form1)" value="0"><br>
+								<font face="Arial, Helvetica, sans-serif"><br><strong><u>Particle Dimensions (mm)</u></strong></font><br>
+								<table border="0">
+									<tbody>
+										<tr>
+											<td>Outer diameter :</td>
+											<td><input name="outdiam" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Inner diameter :</td>
+											<td><input name="indiam" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Central hole diam :</td>
+											<td><input name="holediam" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Number of Rib/Sp/Hl : </td>
+											<td><input name="ribnum" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Rib/valley ratio :</td>
+											<td><input name="ribval" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Spoke thickness :</td>
+											<td><input name="spokethk" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Cylinder height :</td>
+											<td><input name="cylhght" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+										<tr>
+											<td>Total height (+dome) :</td>
+											<td><input name="tothght" size="10" onchange="resetoutput(form1)" value="0"></td>
+										</tr>
+									</tbody>
+								</table>
+						</div>
+						<div id="resultsArea"><strong><u>Results</u></strong><br>
+							<table border="0">
+								<tbody>
+									<tr>
+										<td style="width: 200px;">Perimeter mm :</td>
+										<td><input name="perim" size="10"></td>
+										<td style="width: 200px;">       One face surface mm² :</td>
+										<td><input name="face" size="10"></td>
+									</tr>
+									<tr>
+										<td>Total surface mm² :</td>
+										<td><input name="totsurf" size="10"></td>
+										<td>       Volume occupied mm³ :</td>
+										<td><input name="volocc" size="10"></td>
+									</tr>
+									<tr>
+										<td>Volume real mm³ :</td>
+										<td><input name="volreal" size="10"></td>
+										<td>       Nb particles/l :</td>
+										<td><input name="partnum" size="10"></td>
+									</tr>
+									<tr>
+										<td>Spec. surface cm²/l : </td>
+										<td><input name="specsurf" size="10"></td>
+										<td>       Void fraction occupied. : </td>
+										<td><input name="voidocc" size="10"></td>
+									</tr>
+									<tr>
+										<td>Void fraction real :</td>
+										<td><input name="voidreal" size="10"></td>
+										<td>       Equ surf/vol Dp mm :</td>
+										<td><input name="eqavdp" size="10"></td>
+									</tr>
+									<tr>
+										<td>Equ vol Dp mm :</td>
+										<td><input name="eqvoldp" size="10"></td>
+										<td>       Sphericity factor :</td>
+										<td><input name="sphfact" size="10"></td>
+									</tr>
+									<tr>
+										<td>Solidity factor :</td>
+										<td><input name="solfact" size="10"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					  <br>
+					</form>
+				</div>
+				<div id="draw"><canvas height="350" id="FuriaCanvas" width="400"></canvas></div>
+			</div>
+		</div>
+	</div>
+</div>					
+					
+<script src="js/app.js"></script>
+<script src="index.js"></script>
+</body>
